@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试FastAPI跨域</title>
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="app">
+    <div>测试FastAPI跨域</div>
+    <div><button type="button" @click="getItmes">获取</button></div>
+    <div>{{items}}</div>
+</div>
+</body>
+<script type="text/javascript">
+let vm = new Vue({
+    el: "#app",
+    data:{
+        items:[]
+    },
+    methods:{
+        getItmes(){
+            axios.get("http://127.0.0.1:8000/trivial/cors/")
+            .then(resp => {
+                console.log(resp);
+                this.items = resp.data;
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+    }
+})
+</script>
+</html>
